@@ -38,6 +38,7 @@
 }
 
 .color-wheel {
+   margin-top: 5rem;
    width: 200px;
    height: 200px;
    border-radius: 50%;
@@ -50,4 +51,11 @@
   height: 3rem;
   border: 1px black solid;
   
+}
+
+.scheme {
+   margin: 0 auto;
+   margin-bottom: 1rem;
+   display: flex;
+   justify-content: center;
 }

@@ -1,3 +1,5 @@
+import { Nimble } from 'aws-sdk'
+
 export function getTriade(hex: string) {
    const rgb: number[] | null = hexToRgb(hex)
    if (!rgb) return null
@@ -6,21 +8,34 @@ export function getTriade(hex: string) {
    const g = rgb[1]
    const b = rgb[2]
    //    rgb works
-   console.log('rgb', rgb)
 
    const hsl = rgbToHsl(r, g, b)
-   console.log('hsl', hsl)
 
+   // to get triad (h+120) % 360
    const h = (hsl[0] + 120) % 360
    const s = hsl[1]
    const l = hsl[2]
    const color1 = hslToRgb(h, s, l)
-   const color2 = hslToRgb((h + 180) % 360, s, l)
-
-   console.log('color scehme is \n', color1, color2)
-   console.log()
+   const color2 = hslToRgb((h + 120) % 360, s, l)
 
    return [hex, rgbToHex(color1), rgbToHex(color2)]
+}
+
+export function getMonochromatic(hex: string): string[] {
+   // Convert hex to RGB
+   const rgb = hexToRgb(hex)
+   if (!rgb) return []
+   const r = rgb[0]
+   const g = rgb[1]
+   const b = rgb[2]
+   // Generate shades by adding and subtracting a fixed value from the RGB values
+   const shades = []
+   for (let i = 0; i < 3; i++) {
+      shades.push(rgbToHex([r + (i - 2) * 32, g + (i - 2) * 32, b + (i - 2) * 32]))
+   }
+   // console.log('shades', shades);
+
+   return shades
 }
 
 const hexToRgb = (hex: string) => {

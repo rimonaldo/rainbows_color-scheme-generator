@@ -3,34 +3,35 @@ import logo from './logo.svg'
 import './styles/App.css'
 import ColorWheel from './components/ColorWheel'
 import { getTriade } from './services/color.service'
+import Monochromatic from './components/schemes/Monochromatic'
+import Triadic from './components/schemes/Triadic'
 import { Slider, Sketch, Material, Colorful, Compact, Circle, Wheel, Block, Github, Chrome } from '@uiw/react-color'
 function App() {
-   const [hex, setHex] = useState('#ffffff')
-   const [triade, setTriade] = useState([hex, 'white', 'white'])
+   const [hex, setHex] = useState('#FFFFFF')
+   const [hsl, setHsl] = useState([])
+   const [triad, setTriad] = useState([hex, 'white', 'white'])
 
    const onColor = () => {
-      let triade = getTriade(hex)
-      if (!triade) return null
-      console.log(triade)
+      let triad = getTriade(hex)
+      if (!triad) return null
+      console.log(triad)
 
-      setTriade(triade)
+      setTriad(triad)
    }
 
    return (
       <div className="App">
          <Wheel
+            style={{ margin: '3rem auto' }}
             color={hex}
             onChange={color => {
                setHex(color.hex)
                onColor()
             }}
          />
-
-         <div className="triade">
-            <div className="color c-1" style={{ backgroundColor: triade[0] }}></div>
-            <div className="color c-2" style={{ backgroundColor: triade[1] }}></div>
-            <div className="color c-3" style={{ backgroundColor: triade[2] }}></div>
-         </div>
+         <h1>Triadic</h1>
+         {/* <Monochromatic hex={hex}  /> */}
+         <Triadic triad={triad} />
       </div>
    )
 }
