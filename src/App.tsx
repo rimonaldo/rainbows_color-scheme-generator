@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './styles/App.css'
-import ColorWheel from './components/ColorWheel'
+import { useState } from 'react'
+import './styles/main.scss'
 import { getTriade } from './services/color.service'
-import Monochromatic from './components/schemes/Monochromatic'
 import Triadic from './components/schemes/Triadic'
-import { Slider, Sketch, Material, Colorful, Compact, Circle, Wheel, Block, Github, Chrome } from '@uiw/react-color'
+import Hero from './features/header/Header'
+import { Wheel } from '@uiw/react-color'
 function App() {
    const [hex, setHex] = useState('#FFFFFF')
    const [hsl, setHsl] = useState([])
@@ -21,6 +19,7 @@ function App() {
 
    return (
       <div className="App">
+         <Hero />
          <Wheel
             style={{ margin: '3rem auto' }}
             color={hex}
@@ -29,7 +28,7 @@ function App() {
                onColor()
             }}
          />
-         <h1>Triadic</h1>
+         <h2>Triadic</h2>
          {/* <Monochromatic hex={hex}  /> */}
          <Triadic triad={triad} />
       </div>

@@ -1,0 +1,22 @@
+header
+
+color picker 
+    wheele
+    input
+        hex
+        
+
+color cards
+    title
+    cards
+        on hover open wide for hex Text
+
+config
+
+
+purple - #121b23
+purple - #bb36c9
+pink - #f35067
+yelo - #f1e307
+grass - #9ae345 
+apple - #18c556
